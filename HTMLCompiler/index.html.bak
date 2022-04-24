@@ -57,8 +57,13 @@
 						<label style="font-family:arial; color:white;" for="autoturbo">Enable turbomode on load:</label>
 						<input type="checkbox" id="autoturbo"><br>
 						<label style="font-family:arial; color:white;" for="compadmode">30fps Mode:</label>
-						<input type="checkbox" id="compadmode" checked>
+						<input type="checkbox" id="compadmode" checked><br>
+						<label style="font-family:arial; color:white;" for="compadmode">Easy Mode:</label><input type="checkbox" id="easymode" checked><br>
+						<p style="font-family:arial; color:white;">
+							Easy Mode Makes It Easy To Use, Just Download And Click index.html, This Makes It Easer To Set Up For Use.
+						</p>
 					</p>
+					
 					<h1 style="font-family:arial; color:white;">NOTICE:</h1>
 					<p style="font-family:arial; color:white;">
 					You can only run this on localhosts, websites and electron apps,<br>
@@ -84,6 +89,6 @@
 		"id="console">
 				
 		</div>
-		<script src="compiler.js"></script>
+		<script src="compiler.js?n=1"></script>
 	</body>
 </html>

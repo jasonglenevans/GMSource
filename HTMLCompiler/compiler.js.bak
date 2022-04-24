@@ -1,16 +1,25 @@
-var url = 'https://jasonglenevans.github.io/GvbvdxxModLoader/main.js';
+var url = 'https://jasonglenevans.github.io/GvbvdxxModLoader/main.js?n=1';
+var url2 = 'https://jasonglenevans.github.io/GvbvdxxModLoader/extension-worker.js?n=1';
+var url3 = 'https://jasonglenevans.github.io/GvbvdxxModLoader/extension-worker.js.map?n=1';
 var storedText;
-console.log("Fetching vm");
 fetch(url,{mode:"cors"})
   .then(function(response) {
     response.text().then(function(text) {
-		console.log("Vm loaded");
-		getvm(text);
+		window.downloadedMultiVm = text;
     });
   });
-function getvm(vm) {
-	window.downloadedMultiVm = vm;
-}
+fetch(url2,{mode:"cors"})
+  .then(function(response) {
+    response.text().then(function(text) {
+		window.downloadedExtensionWorker = text;
+    });
+  });
+fetch(url3,{mode:"cors"})
+  .then(function(response) {
+    response.text().then(function(text) {
+		window.downloadedExtensionWorkerMap = text;
+    });
+  });
 var cons = document.getElementById("console");
 file = document.getElementById("fileselect");
 file.accept = ".sb3";
@@ -53,12 +62,16 @@ function compile(opts) {
 	log("geting options...");
 	var opt = opts;
 	
-	log(`Making folder "scratch"`);
-	var img = zip.folder("scratch");
-	log(`Making file "vm.js"`);
-	img.file("vm.js", window.downloadedMultiVm, {base64: false});
-	log(`Making file "project.sb3"`);
-	img.file("project.sb3", window.projectFile, {base64: true});
+	zip.file("vm.js", window.downloadedMultiVm, {base64: false});
+	zip.file("exension-worker.js", window.downloadedExtensionWorker, {base64: false});
+	zip.file("exension-worker.js.map", window.downloadedExtensionWorkerMap, {base64: false});
+	zip.file("project.sb3", window.projectFile, {base64: true});
+	if (opts.easymode) {
+		var projectsrc = "data:application/octet-stream;base64,"+window.projectFile;
+		zip.remove("project.sbg"); //to save space plus edit pretection
+	} else {
+		var projectsrc = "project.sb3?n=1";
+	}
 	log(`Making file "index.html"`);
 	var html = `<!DOCTYPE HTML>
 <html>
@@ -161,7 +174,7 @@ function compile(opts) {
 		font-family:arial;
 		color:white;
 		" hidden id="errrorText">Error!<br>Make sure this has access to the .sb3 file and make sure its on a website, or electron app.</h1></center>
-		<script src="scratch/vm.js"></script>
+		<script src="vm.js?n=1"></script>
 		<script onerror="window.alert('OOPS were sorry but an error has been thrown, please check the devloper console for more info.')">
 			window.vm = new Scratch.vm();
 			window.file = document.getElementById("files");
@@ -206,7 +219,7 @@ function compile(opts) {
 				cvs.hidden = true;
 				document.getElementById("errrorText").hidden = false;
 			});
-			xhr.open('GET', 'scratch/project.sb3', true);
+			xhr.open('GET', '`+projectsrc+`', true);
 			xhr.responseType = 'arraybuffer';
 
 			xhr.onload = function(e) {
@@ -346,7 +359,8 @@ function startCompile() {
 			nostrech:document.getElementById("nostrech").checked,
 			username:document.getElementById("username").value,
 			clicktostart:document.getElementById("clicktostart").checked,
-			quality:document.getElementById("quality").value
+			quality:document.getElementById("quality").value,
+			easymode:document.getElementById("easymode").checked
 		});
 	} else {
 		cons.innerHTML = "";
