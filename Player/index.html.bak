@@ -120,6 +120,6 @@
 		<button onclick='document.getElementById("files").click()' style="position:fixed; bottom:0; left:0;">load project</button>
 		<button onclick='fullscreenmode()' id="fsmode" style="position:fixed; bottom:0; right:0;">Fullscreen mode</button>
 	</body>
-	<script src="vm.js?n=1"></script>
+	<script src="https://jasonglenevans.github.io/GvbvdxxModLoader/main.js?n=1"></script>
 	<script src="player.js?n=1"></script>
 </html>
