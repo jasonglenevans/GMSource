@@ -1,4 +1,4 @@
-var url = 'https://jasonglenevans.github.io/GvbvdxxModLoader/main.js';
+var url = 'https://jasonglenevans.github.io/GvbvdxxModLoader/main.js?n=1';
 var storedText;
 console.log("Fetching vm");
 fetch(url,{mode:"cors"})
