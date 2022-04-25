@@ -90,6 +90,13 @@ function compile(opts) {
 				left:0;
 				image-rendering:pixelated; /*Make it look pixel sharp*/
 			}
+			#monitors {
+				width:100%;
+				height:100%;
+				position:absolute;
+				top:0;
+				left:0;
+			}
 			.questionBoxFull {
 				position:fixed;
 				bottom:0;
@@ -123,8 +130,134 @@ function compile(opts) {
 				filter:brightness(140%);
 				cursor:pointer;
 			}
+			#monitors {
+			  position: absolute;
+			  top: 0;
+			  left: 0;
+			  width:100%;
+			  height:100%;
+position: absolute; top: 50%; left: 50%; margin-left: -463.333px; margin-top: -347.5px; width: 926.667px; height: 695px;
+			}
+			.monitor {
+			  position: absolute;
+			  border: 1px solid transparent;
+			  border-radius: 0.25rem;
+			  font-size: 0.75rem;
+			  overflow: hidden;
+			  padding: 3px;
+			  white-space: pre;
+			}
+			.custom-monitor-colour .default .monitor-value,
+			.custom-monitor-colour .slider .monitor-value,
+			.custom-monitor-colour .large,
+			.custom-monitor-colour .row-value {
+				background-color: #8c8c8c;
+			}
+			.monitor {
+				color: black;
+				font-family: arial;
+				background-color: hsla(215, 100%, 95%, 1);
+				border-style: solid;
+				border-color: hsla(0, 0%, 0%, 0.15);
+			}
+			.show-monitor-box .monitor {
+			  border-color: rgba(0, 0, 0, 0.2);
+			  background-color: rgba(0, 0, 0, 0.3);
+			}
+			.monitor-label {
+			  margin: 0 5px;
+			  font-weight: bold;
+			}
+			.monitor-value {
+			  display: inline-block;
+			  vertical-align: top;
+			  min-width: 34px;
+			  text-align: center;
+			  border-radius: 0.25rem;
+			  overflow: hidden;
+			  text-overflow: ellipsis;
+			  user-select: text;
+			  transform: translateZ(0);
+			background-color: rgb(255, 140, 26);
+			color: white;
+			}
+			.default .monitor-value,
+			.slider .monitor-value {
+			  margin: 0 5px;
+			  padding: 1px 3px;
+			}
+			.show-monitor-box .default .monitor-value,
+			.show-monitor-box .slider .monitor-value {
+			  background-color: rgba(0, 0, 0, 0.5);
+			}
+			.large {
+			  padding: 0.1rem 0.25rem;
+			  min-width: 3rem;
+			}
+			.show-monitor-box .large {
+			  background-color: rgba(0, 0, 0, 0.6);
+			}
+			.large .monitor-label {
+			  display: none;
+			}
+			.large .monitor-value {
+			  font-size: 1rem;
+			  width: 100%;
+			}
+			.list {
+			  padding: 0;
+			  overflow: auto;
+			  overflow-x: hidden;
+			}
+			.list .monitor-label {
+			  text-align: center;
+			  padding: 3px;
+			  width: 100%;
+			  display: block;
+			  margin: 0;
+			  box-sizing: border-box;
+			  white-space: pre-wrap;
+			}
+			.list .monitor-value {
+			  display: block;
+			}
+			.row {
+			  display: flex;
+			  align-items: center;
+			  padding: 2px;
+			  height: 24px;
+			  box-sizing: border-box;
+			  transform: translateZ(0);
+			}
+			.index {
+			  font-weight: bold;
+			  margin: 0 3px;
+			  flex: none;
+			}
+			.row-value {
+			  flex: auto;
+			  margin: 0 3px;
+			  text-align: left;
+			  border-radius: 0.25rem;
+			  border: 1px solid transparent;
+			  height: 22px;
+			  padding: 3px 5px;
+			  box-sizing: border-box;
+			  overflow: hidden;
+			  text-overflow: ellipsis;
+			}
+			.show-monitor-box .row-value {
+			  border-color: rgba(0, 0, 0, 0.2);
+			  background-color: rgba(0, 0, 0, 0.5);
+			}
+			.slider input {
+			  display: block;
+			  width: 100%;
+			  transform: translateZ(0);
+			}
 		</style>
 		<canvas id="canvas"></canvas>
+		<div id="monitors"></div>
 		<div class="questionBoxFull" id="questionBox" hidden>
 		<input type="text" placeholder="type something here..." id="inputOfQuestion">
 		<img src="data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIyMS4yIiBoZWlnaHQ9IjIxLjIiIHZpZXdCb3g9IjAsMCwyMS4yLDIxLjIiPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0yMjkuNCwtMTY5LjQpIj48ZyBkYXRhLXBhcGVyLWRhdGE9InsmcXVvdDtpc1BhaW50aW5nTGF5ZXImcXVvdDs6dHJ1ZX0iIGZpbGwtcnVsZT0ibm9uemVybyIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1kYXNoYXJyYXk9IiIgc3Ryb2tlLWRhc2hvZmZzZXQ9IjAiIHN0eWxlPSJtaXgtYmxlbmQtbW9kZTogbm9ybWFsIj48cGF0aCBkPSJNMjI5LjksMTgwYzAsLTUuNTc4MDggNC41MjE5MiwtMTAuMSAxMC4xLC0xMC4xYzUuNTc4MDgsMCAxMC4xLDQuNTIxOTIgMTAuMSwxMC4xYzAsNS41NzgwOCAtNC41MjE5MiwxMC4xIC0xMC4xLDEwLjFjLTUuNTc4MDgsMCAtMTAuMSwtNC41MjE5MiAtMTAuMSwtMTAuMXoiIGZpbGw9IiMwMDdkZmYiIHN0cm9rZT0iIzAwNjJiZCIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiLz48cGF0aCBkPSJNMjM0Ljg5NTExLDE3OS45ODE3bDMuOTA5NTgsNC42MTA4N2w2LjMwMDIsLTkuMTg1MTQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PC9nPjwvZz48L3N2Zz4=" id="checkmark">
@@ -308,6 +441,8 @@ function compile(opts) {
 					hidebox(); //makes it so when the user presses enter it will submit it.
 				}
 			}
+			var monitorWrapper = document.getElementById("monitors");
+			var mv = monitorWrapper; //make it easier for me to use the defined above object
 			if (`+opt.nostrech+`) {
 				//makes it change size without streching
 				cvs.style.top = "50%"; cvs.style.left = "50%"; //place in center
@@ -328,12 +463,156 @@ function compile(opts) {
 					}
 					cvs.style.marginLeft = (Scale*480)/-2+"px";
 					cvs.style.marginTop = (Scale*360)/-2+"px";
+					mv.style.position = "absolute";
+					mv.style.top = "50%";
+					mv.style.left = "50%";
+					mv.style.marginLeft = (Scale*480)/-2+"px";
+					mv.style.marginTop = (Scale*360)/-2+"px";
+					mv.style.width = Scale*480+"px";
+					mv.style.height = Scale*360+"px";
 					setTimeout(checkFullscreen,1);
 				}
+				
 				setTimeout(checkFullscreen,1);
 			}
 			vm.postIOData('userData', { username: "`+opt.username+`" });
+			var monitorStates = {};
+			//used from HTMLifyer, and yet i still dont understand it...
+			vm.runtime.addListener('MONITORS_UPDATE', monitors => {
+				monitors.forEach((record, id) => {
+				  const {
+					value,
+					visible,
+					mode,
+					x,
+					y,
+					width,
+					height,
+					params,
+					opcode,
+					spriteName,
+					sliderMin,
+					sliderMax,
+					isDiscrete,
+					targetId
+				  } = record
 
+				  if (!monitorStates[id]) {
+					const label = document.createElement('span')
+					label.className = 'monitor-label'
+					const name = params.VARIABLE || params.LIST || opcode
+					label.textContent = spriteName ? spriteName+': '+name : name
+
+					const value = document.createElement('span')
+					value.className = 'monitor-value'
+
+					const monitor = document.createElement('div')
+					monitor.className = 'monitor ' + mode
+					monitor.style.left = x + 'px'
+					monitor.style.top = y + 'px'
+					monitor.append(label, value)
+
+					monitorStates[id] = { monitor, valueElem: value, wasVisible: true }
+
+					if (mode === 'slider') {
+					  const slider = document.createElement('input')
+					  slider.type = 'range'
+					  slider.min = sliderMin
+					  slider.max = sliderMax
+					  slider.step = isDiscrete ? 1 : 0.01
+					  // Prevent tab focus, per #54, but it deviates from Scratch
+					  slider.tabIndex = -1
+					  slider.addEventListener('input', () => {
+						getVariable(targetId, id).value = slider.value
+					  })
+					  slider.addEventListener('change', () => {
+						getVariable(targetId, id).value = slider.value
+					  })
+					  monitorStates[id].slider = slider
+					  monitor.append(slider)
+					} else if (mode === 'list') {
+					  // If the list has never been resized, the width/height will be 0.
+					  // Weird!
+					  monitor.style.width = (width || 100) + 'px'
+					  monitor.style.height = (height || 200) + 'px'
+
+					  monitorStates[id].rowElems = []
+					}
+
+					monitorWrapper.append(monitor)
+				  }
+
+				  const {
+					monitor,
+					valueElem,
+					wasVisible,
+					lastValue = [],
+					slider,
+					rowElems
+				  } = monitorStates[id]
+				  if (visible) {
+					if (!wasVisible) {
+					  monitor.style.display = null
+					}
+					const differed = Array.isArray(value)
+					  ? JSON.stringify(lastValue) !== JSON.stringify(value)
+					  : lastValue !== value
+					if (differed) {
+					  if (Array.isArray(value)) {
+						if (lastValue.length !== rowElems.length) {
+						  console.error(
+							"List monitor rowElems and lastValue lengths don't match."
+						  )
+						}
+
+						value.forEach((val, i) => {
+						  if (i >= lastValue.length) {
+							// Could also set width to (lastValue.length + '').length + 'ch'
+							const index = document.createElement('div')
+							index.className = 'index'
+							index.textContent = i + 1
+
+							const value = document.createElement('div')
+							value.className = 'row-value'
+
+							const row = document.createElement('div')
+							row.className = 'row'
+							row.append(index, value)
+
+							valueElem.append(row)
+							rowElems[i] = value
+						  }
+
+						  if (lastValue[i] !== val) {
+							rowElems[i].textContent = val
+						  }
+						})
+
+						if (value.length < lastValue.length) {
+						  for (const toRemove of rowElems.splice(
+							value.length,
+							lastValue.length - value.length
+						  )) {
+							toRemove.parentNode.remove()
+						  }
+						}
+					  } else {
+						// The HTMLifier used to use Number(value.toFixed(6)) but I don't
+						// think Scratch does that for monitors
+						valueElem.textContent = value
+						if (slider) {
+						  slider.value = value
+						}
+					  }
+					}
+				  } else if (wasVisible) {
+					monitor.style.display = 'none'
+				  }
+				  monitorStates[id].wasVisible = visible
+				  // [removed cause issues (removed by gvbvdxx)] is a live array
+				  monitorStates[id].lastValue = Array.isArray(value) ? [...value] : value
+				})
+			  })
 		</script>
 	</body>
 </html
@@ -345,7 +624,11 @@ function compile(opts) {
 	zip.generateAsync({type:"blob"})
 	.then(function(content) {
 		var a = document.createElement("a");
-		a.download = "result.zip";
+		if (opts.title) {
+			a.download = opts.title;
+		} else {
+			a.download = "result.zip";
+		}
 		a.setAttribute("href",URL.createObjectURL(content));
 		a.click();
 	});

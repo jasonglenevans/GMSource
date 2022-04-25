@@ -30,8 +30,8 @@
 						
 						<!--Display options-->
 						<h1 style="font-family:arial; color:white;">Display options:</h1>
-						<label style="font-family:arial; color:white;" for="nostrech">Keep aspect ratio (do not strech screen):</label>
-						<input type="checkbox" id="nostrech" checked><br>
+						<label style="font-family:arial; color:white;" hidden for="nostrech">Keep aspect ratio (do not strech screen):</label>
+						<input type="checkbox" id="nostrech" checked hidden><br>
 						<label style="font-family:arial; color:white;" for="username">Username:</label>
 						<input type="text" id="username" checked><br><br>
 						<label style="font-family:arial; color:white;" for="quality">Screen quality:</label>
@@ -41,8 +41,7 @@
 						</select><br>
 						<p style="font-family:arial; color:white;">
 						HD is recommended for stuff with vector graphics.<br>
-						Pixelated is recommended for pixelated stuff.<br>
-						You must have Keep aspect ratio checked for this to work.
+						Pixelated is recommended for pixelated stuff.
 						</p>
 						
 						<!--Startup options-->
@@ -58,23 +57,24 @@
 						<input type="checkbox" id="autoturbo"><br>
 						<label style="font-family:arial; color:white;" for="compadmode">30fps Mode:</label>
 						<input type="checkbox" id="compadmode" checked><br>
-						<label style="font-family:arial; color:white;" for="compadmode">Easy Mode:</label><input type="checkbox" id="easymode" checked><br>
+						<label style="font-family:arial; color:white;" for="compadmode">Easy Mode:</label><input type="checkbox" id="easymode" onchange="document.getElementById('notice').hidden = this.checked;" checked><br>
 						<p style="font-family:arial; color:white;">
 							Easy Mode Makes It Easy To Use, Just Download And Click index.html, This Makes It Easer To Set Up For Use.
 							<br>
 							NOTE:please backup/save your project when using easy mode because the project file is stored on the html file.
 						</p>
 					</p>
-					
-					<h1 style="font-family:arial; color:white;">NOTICE:</h1>
-					<p style="font-family:arial; color:white;">
-					You can only run this on localhosts, websites and electron apps,<br>
-					i say create a github account, then use github pages to do so.<br>
-					go <a href="https://attacomsian.com/blog/local-web-server" target="_blank">here</a> to host a free localhost server.
-					this is because the page is looking for files by requesting for them.<br>
-					but because of an security reason you cant read from the drive,<br>
-					for saftey reasons. you can only do this with electron, or localhosts.
-					</p>
+					<div id="notice" hidden>
+						<h1 style="font-family:arial; color:white;">NOTICE:</h1>
+						<p style="font-family:arial; color:white;">
+						You can only run this on localhosts, websites and electron apps,<br>
+						i say create a github account, then use github pages to do so.<br>
+						go <a href="https://attacomsian.com/blog/local-web-server" target="_blank">here</a> to host a free localhost server.
+						this is because the page is looking for files by requesting for them.<br>
+						but because of an security reason you cant read from the drive,<br>
+						for saftey reasons. you can only do this with electron, or localhosts.
+						</p>
+					</div>
 				</center>
 			</div>
 		</center>
