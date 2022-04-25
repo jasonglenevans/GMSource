@@ -297,7 +297,7 @@ position: absolute; top: 50%; left: 50%; margin-left: -463.333px; margin-top: -3
 		margin-top:30px;
 		margin-left:-210px;
 		color:white;
-		" hidden id="loadingText">Loading Assets...</h1>
+		" hidden id="loadingText">`+opts.loadingScreenText+`</h1>
 		<center><h1 style="
 		position:fixed;
 		top:50%;
@@ -329,23 +329,6 @@ position: absolute; top: 50%; left: 50%; margin-left: -463.333px; margin-top: -3
 				vm.setTurboMode(true);
 			} else {
 				vm.setTurboMode(false);
-			}
-			vm.runtime.emitProjectLoaded = function () {
-				var flagscript = `+opt.clicktostart.toString()+`;
-				if (flagscript) {
-					document.getElementById("projectstarticon").hidden = false;
-					document.getElementById("loadingText").hidden = true;
-					cvs.hidden = false;
-					document.getElementById("projectstarticon").onclick = function () {
-						vm.greenFlag();
-						document.getElementById("projectstarticon").hidden = true;
-					}
-				} else {
-					vm.greenFlag();
-					document.getElementById("projectstarticon").hidden = true;
-					cvs.hidden = false;
-					document.getElementById("loadingText").hidden = true;
-				}
 			}
 			var xhr = new XMLHttpRequest();
 			xhr.addEventListener('error',function (e,e2,e3) {
@@ -463,18 +446,23 @@ position: absolute; top: 50%; left: 50%; margin-left: -463.333px; margin-top: -3
 					}
 					cvs.style.marginLeft = (Scale*480)/-2+"px";
 					cvs.style.marginTop = (Scale*360)/-2+"px";
+					mv.style.position = "absolute";
+					mv.style.top = "50%";
+					mv.style.left = "50%";
+					mv.style.marginLeft = (Scale*480)/-2+"px";
+					mv.style.marginTop = (Scale*360)/-2+"px";
+					mv.style.width = Scale*480+"px";
+					mv.style.height = Scale*360+"px";
 					setTimeout(checkFullscreen,1);
 				}
-				mv.style.position = "absolute";
-				mv.style.top = "50%";
-				mv.style.left = "50%";
-				mv.style.marginLeft = (Scale*480)/-2+"px";
-				mv.style.marginTop = (Scale*360)/-2+"px";
-				mv.style.width = Scale*480+"px";
-				mv.style.height = Scale*360+"px";
+				
 				setTimeout(checkFullscreen,1);
 			}
-			vm.postIOData('userData', { username: "`+opt.username+`" });
+			if (`+addNumbersToUsername+`) {
+				vm.postIOData('userData', { username: "`+opt.username+`"+Math.round(Math.random()*100000) });
+			} else {
+				vm.postIOData('userData', { username: "`+opt.username+`" });
+			}
 			var monitorStates = {};
 			//used from HTMLifyer, and yet i still dont understand it...
 			vm.runtime.addListener('MONITORS_UPDATE', monitors => {
@@ -612,6 +600,88 @@ position: absolute; top: 50%; left: 50%; margin-left: -463.333px; margin-top: -3
 				  monitorStates[id].lastValue = Array.isArray(value) ? [...value] : value
 				})
 			  })
+			  
+		/**
+			Cloud Provider By Gvbvdxx.
+			do not hack the servers, or modify these servers.
+			**********
+			
+			Comments will tell you what to do!
+			just use new gvbvdxxCloudProvider() for the cloud provider
+			
+			**********
+		*/
+		var websocketID = "`+opts.servername+`"; /*Change this to the glitch project name*/
+		var projectID = "`+opts.projectid+`"; /*This will be your id for the project, so it does not overide with any cloud variables.*/
+		/*Do not change ANYTHING below this script*/
+		var websocketcloudprovider = null
+		function openconnection() {
+				console.log("server is connecting..");
+				websocketcloudprovider = new WebSocket("wss://"+websocketID+".glitch.me");
+				websocketcloudprovider.onopen = function () {
+					console.log("connected");
+				};
+				websocketcloudprovider.onclose = function () {
+					console.log("disconnected or failed to connect, retrying...");
+					openconnection();
+				};
+				websocketcloudprovider.onmessage = function (event) {
+					var json = JSON.parse(event.data);
+					var clouddata = json[projectID];
+					var keys = Object.keys(clouddata);
+					var index = 0;
+					while (keys.length > index) {
+						try{
+							vm.postIOData('cloud', {
+								varUpdate: { name:keys[index] , value:clouddata[keys[index]] }
+							});
+						}catch(e){}
+						index += 1;
+					}
+					
+				};
+		}
+		window.gvbvdxxCloudProvider = {
+			
+			requestCloseConnection:function(){
+				/*Does nothing...*/
+			},
+			requestOpenConnection:function(){
+				/*Does nothing...*/
+			},
+			updateVariable:function (a,b) {
+				/*Updates The Variable*/
+				websocketcloudprovider.send(JSON.stringify({
+					command:"saveData",
+					name:a,
+					value:b,
+					id:projectID
+				}))
+			}
+		};
+		openconnection();
+		
+		//back to project.
+		vm.runtime.emitProjectLoaded = function () {
+				//will run whenever the project finishes loading.
+				var flagscript = false;
+				if (flagscript) {
+					document.getElementById("projectstarticon").hidden = false;
+					document.getElementById("loadingText").hidden = true;
+					cvs.hidden = false;
+					document.getElementById("projectstarticon").onclick = function () {
+						vm.greenFlag();
+						document.getElementById("projectstarticon").hidden = true;
+					}
+				} else {
+					vm.greenFlag();
+					document.getElementById("projectstarticon").hidden = true;
+					cvs.hidden = false;
+					document.getElementById("loadingText").hidden = true;
+				}
+				vm.setCloudProvider(gvbvdxxCloudProvider); //set my cloud provider to it.
+		};
+		
 		</script>
 	</body>
 </html
@@ -639,10 +709,14 @@ function startCompile() {
 			turbomode:document.getElementById("autoturbo").checked,
 			compatibilityMode:document.getElementById("compadmode").checked,
 			nostrech:document.getElementById("nostrech").checked,
-			username:document.getElementById("username").value,
+			username:document.getElementById("username").value.replaceAll('"',"_"),
 			clicktostart:document.getElementById("clicktostart").checked,
 			quality:document.getElementById("quality").value,
-			easymode:document.getElementById("easymode").checked
+			projectid:document.getElementById("projectid").value.replaceAll('"',"_"),
+			servername:document.getElementById("servername").value.replaceAll('"',"_"),
+			easymode:document.getElementById("easymode").checked,
+			loadingScreenText:"Loading Assets...",
+			addNumbersToUsername:document.getElementById("addNumbersToUsername").checked
 		});
 	} else {
 		cons.innerHTML = "";

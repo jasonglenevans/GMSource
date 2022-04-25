@@ -27,17 +27,35 @@
 						</p>
 						<label style="font-family:arial; color:white;" for="title" value="My Project">Title (Tabs Title):</label>
 						<input type="text" id="title"><br>
-						
+						<label style="font-family:arial; color:white;" for="compadmode">Easy Mode:</label><input type="checkbox" id="easymode" onchange="document.getElementById('notice').hidden = this.checked;" checked><br>
+						<p style="font-family:arial; color:white;">
+							Easy Mode Makes It Easy To Use, Just Download And Click index.html, This Makes It Easer To Set Up For Use.
+							<br>
+							NOTE:please backup/save your project when using easy mode because the project file is stored on the html file.
+						</p><br>
+						<label style="font-family:arial; color:white;" for="projectid">Project ID:</label>
+						<input type="text" id="projectid" onload="this.value = Math.round(Math.random()*100000000000000000);" checked><br><br>
+						<p style="font-family:arial; color:white;">" will be replaced with underscores. you can add spaces if you like.</p>
+						<br>
+						<label style="font-family:arial; color:white;" for="servername">Server Name (on <a href="glitch.com" target="_blank">glitch website</a>):</label>
+						<input type="text" value="gvbvdxx-mod-html-cloud-data" id="servername" checked><br><br>
+						<p style="font-family:arial; color:white;">" will be relaced with underscores.</p>
+						<p style="font-family:arial; font-weight:bold; color:red;">DO NOT CHANGE THE SERVER NAME IF YOU DONT KNOW WHAT YOUR DOING!</p>
+						<br>
 						<!--Display options-->
 						<h1 style="font-family:arial; color:white;">Display options:</h1>
 						<label style="font-family:arial; color:white;" hidden for="nostrech">Keep aspect ratio (do not strech screen):</label>
 						<input type="checkbox" id="nostrech" checked hidden><br>
 						<label style="font-family:arial; color:white;" for="username">Username:</label>
-						<input type="text" id="username" checked><br><br>
+						<input type="text" id="username" checked value="player"><br><br>
+						<label style="font-family:arial; color:white;" for="addNumbersToUsername">Add Numbers To End Of Username?:</label>
+						<input type="checkbox" id="addNumbersToUsername" checked><br><br>
+						<br>	
+
 						<label style="font-family:arial; color:white;" for="quality">Screen quality:</label>
 						<select id="quality">
-							<option value="hd">HD</option>
-							<option value="pixelated" selected>Pixelated</option>
+							<option value="hd" selected>HD</option>
+							<option value="pixelated">Pixelated</option>
 						</select><br>
 						<p style="font-family:arial; color:white;">
 						HD is recommended for stuff with vector graphics.<br>
@@ -57,12 +75,6 @@
 						<input type="checkbox" id="autoturbo"><br>
 						<label style="font-family:arial; color:white;" for="compadmode">30fps Mode:</label>
 						<input type="checkbox" id="compadmode" checked><br>
-						<label style="font-family:arial; color:white;" for="compadmode">Easy Mode:</label><input type="checkbox" id="easymode" onchange="document.getElementById('notice').hidden = this.checked;" checked><br>
-						<p style="font-family:arial; color:white;">
-							Easy Mode Makes It Easy To Use, Just Download And Click index.html, This Makes It Easer To Set Up For Use.
-							<br>
-							NOTE:please backup/save your project when using easy mode because the project file is stored on the html file.
-						</p>
 					</p>
 					<div id="notice" hidden>
 						<h1 style="font-family:arial; color:white;">NOTICE:</h1>
