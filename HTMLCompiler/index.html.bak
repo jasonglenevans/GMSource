@@ -34,7 +34,7 @@
 							NOTE:please backup/save your project when using easy mode because the project file is stored on the html file.
 						</p><br>
 						<label style="font-family:arial; color:white;" for="projectid">Project ID:</label>
-						<input type="text" id="projectid" onload="this.value = Math.round(Math.random()*100000000000000000);" checked><br><br>
+						<input type="text" id="projectid" checked><br><br>
 						<p style="font-family:arial; color:white;">" will be replaced with underscores. you can add spaces if you like.</p>
 						<br>
 						<label style="font-family:arial; color:white;" for="servername">Server Name (on <a href="glitch.com" target="_blank">glitch website</a>):</label>
@@ -104,5 +104,8 @@
 				
 		</div>
 		<script src="compiler.js?n=1"></script>
+		<script>
+		document.getElementById("projectid").value = Math.round("project"+Math.random()*100000);
+		</script>
 	</body>
 </html>

@@ -458,7 +458,7 @@ position: absolute; top: 50%; left: 50%; margin-left: -463.333px; margin-top: -3
 				
 				setTimeout(checkFullscreen,1);
 			}
-			if (`+addNumbersToUsername+`) {
+			if (`+opts.addNumbersToUsername+`) {
 				vm.postIOData('userData', { username: "`+opt.username+`"+Math.round(Math.random()*100000) });
 			} else {
 				vm.postIOData('userData', { username: "`+opt.username+`" });
@@ -601,20 +601,10 @@ position: absolute; top: 50%; left: 50%; margin-left: -463.333px; margin-top: -3
 				})
 			  })
 			  
-		/**
-			Cloud Provider By Gvbvdxx.
-			do not hack the servers, or modify these servers.
-			**********
-			
-			Comments will tell you what to do!
-			just use new gvbvdxxCloudProvider() for the cloud provider
-			
-			**********
-		*/
 		var websocketID = "`+opts.servername+`"; /*Change this to the glitch project name*/
 		var projectID = "`+opts.projectid+`"; /*This will be your id for the project, so it does not overide with any cloud variables.*/
 		/*Do not change ANYTHING below this script*/
-		var websocketcloudprovider = null
+		window.websocketcloudprovider = null
 		function openconnection() {
 				console.log("server is connecting..");
 				websocketcloudprovider = new WebSocket("wss://"+websocketID+".glitch.me");
@@ -626,6 +616,7 @@ position: absolute; top: 50%; left: 50%; margin-left: -463.333px; margin-top: -3
 					openconnection();
 				};
 				websocketcloudprovider.onmessage = function (event) {
+					try{
 					var json = JSON.parse(event.data);
 					var clouddata = json[projectID];
 					var keys = Object.keys(clouddata);
@@ -638,28 +629,30 @@ position: absolute; top: 50%; left: 50%; margin-left: -463.333px; margin-top: -3
 						}catch(e){}
 						index += 1;
 					}
-					
+					}catch(e){}
 				};
 		}
+		openconnection();
 		window.gvbvdxxCloudProvider = {
 			
 			requestCloseConnection:function(){
-				/*Does nothing...*/
+				
 			},
 			requestOpenConnection:function(){
-				/*Does nothing...*/
+				
 			},
 			updateVariable:function (a,b) {
 				/*Updates The Variable*/
+				try{
 				websocketcloudprovider.send(JSON.stringify({
 					command:"saveData",
 					name:a,
 					value:b,
 					id:projectID
-				}))
+				}));
+				}catch(e){}
 			}
 		};
-		openconnection();
 		
 		//back to project.
 		vm.runtime.emitProjectLoaded = function () {
