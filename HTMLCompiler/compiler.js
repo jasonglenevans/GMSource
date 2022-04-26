@@ -461,8 +461,8 @@ position: absolute; top: 50%; left: 50%; margin-left: -463.333px; margin-top: -3
 						var monitorobject = monitorObjects[monitorIndex];
 						var multipliedScale = Scale;
 						var multipliedScaleX = Scale*1;
-						monitorobject.div.style.left = monitorobject.x * multipliedScaleX + "px";
-						monitorobject.div.style.top = monitorobject.y *  multipliedScale + "px";
+						monitorobject.div.style.left = monitorobject.x * multipliedScaleX + monitorObjects[0].div.getBoundingClientRect().width / 4 + "px";
+						monitorobject.div.style.top = monitorobject.y *  multipliedScale + monitorObjects[0].div.getBoundingClientRect().height / 4 + "px";
 						monitorIndex += 1;
 					}
 					setTimeout(checkFullscreen,1);
