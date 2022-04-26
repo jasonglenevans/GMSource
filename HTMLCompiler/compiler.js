@@ -461,8 +461,8 @@ position: absolute; top: 50%; left: 50%; margin-left: -463.333px; margin-top: -3
 						var monitorobject = monitorObjects[monitorIndex];
 						var multipliedScale = Scale;
 						var multipliedScaleX = Scale*1;
-						monitorobject.div.style.left = monitorobject.x * multipliedScaleX + monitorObjects[0].div.getBoundingClientRect().width / 4 + "px";
-						monitorobject.div.style.top = monitorobject.y *  multipliedScale + monitorObjects[0].div.getBoundingClientRect().height / 4 + "px";
+						monitorobject.div.style.left = monitorobject.x * multipliedScaleX + (monitorObjects[0].div.getBoundingClientRect().width / 4) + "px";
+						monitorobject.div.style.top = monitorobject.y *  multipliedScale + (monitorObjects[0].div.getBoundingClientRect().height / 2 * Math.sign(monitorobject.y)) + "px";
 						monitorIndex += 1;
 					}
 					setTimeout(checkFullscreen,1);
@@ -506,7 +506,7 @@ position: absolute; top: 50%; left: 50%; margin-left: -463.333px; margin-top: -3
         const label = document.createElement('span')
         label.className = 'monitor-label'
         const name = params.VARIABLE || params.LIST || opcode
-        label.textContent = spriteName ? spriteName + ': ' + name : spriteName
+        label.textContent = spriteName ? spriteName+': '+name : name
 
         const value = document.createElement('span')
         value.className = 'monitor-value'
@@ -516,11 +516,6 @@ position: absolute; top: 50%; left: 50%; margin-left: -463.333px; margin-top: -3
         monitor.style.left = x * Scale + 'px'
         monitor.style.top = y * Scale + 'px';
         monitor.append(label, value)
-		monitorObjects.push({
-			div:monitor,
-			x:x,
-			y:y
-		});
 
         monitorStates[id] = { monitor, valueElem: value, wasVisible: true }
 
@@ -550,6 +545,13 @@ position: absolute; top: 50%; left: 50%; margin-left: -463.333px; margin-top: -3
         }
 
         monitorWrapper.append(monitor)
+		monitorObjects.push({
+			div:monitor,
+			x:x,
+			y:y,
+			width:monitor.getBoundingClientRect().width,
+			height:monitor.getBoundingClientRect().height
+		});
       }
 
       const {
@@ -705,7 +707,7 @@ position: absolute; top: 50%; left: 50%; margin-left: -463.333px; margin-top: -3
 	log("Ziping Html...");
 	zip.file("index.html", html);
 	log("2HTML Complete!!!");
-	log("Please Wait Zip File Will Download Soon...");
+	log("Downloading...");
 	zip.generateAsync({type:"blob"})
 	.then(function(content) {
 		var a = document.createElement("a");
