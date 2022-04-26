@@ -506,7 +506,7 @@ position: absolute; top: 50%; left: 50%; margin-left: -463.333px; margin-top: -3
         const label = document.createElement('span')
         label.className = 'monitor-label'
         const name = params.VARIABLE || params.LIST || opcode
-        label.textContent = spriteName ? '${spriteName}: ${name}' : name
+        label.textContent = spriteName ? spriteName + ': ' + name
 
         const value = document.createElement('span')
         value.className = 'monitor-value'
