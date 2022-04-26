@@ -1,0 +1,6 @@
+yarn run v1.22.17
+$ npm run clean && webpack
+
+> scratch-gui@0.1.0 clean
+> rimraf ./build && mkdirp build && rimraf ./dist && mkdirp dist
+

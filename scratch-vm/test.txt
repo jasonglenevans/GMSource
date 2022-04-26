@@ -1,0 +1,6 @@
+yarn run v1.22.17
+$ npm run docs && webpack --progress --colors --bail
+
+> scratch-vm@0.2.0 docs
+> jsdoc -c .jsdoc.json
+
