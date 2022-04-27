@@ -51,6 +51,8 @@
 						<label style="font-family:arial; color:white;" for="addNumbersToUsername">Add Numbers To End Of Username?:</label>
 						<input type="checkbox" id="addNumbersToUsername" checked><br><br>
 						<br>	
+						<label style="font-family:arial; color:white;" for="ui">Add Project Controls? (UI):</label>
+						<input type="checkbox" id="ui" checked><br><br>
 
 						<label style="font-family:arial; color:white;" for="quality">Screen quality:</label>
 						<select id="quality">
@@ -84,7 +86,8 @@
 						go <a href="https://attacomsian.com/blog/local-web-server" target="_blank">here</a> to host a free localhost server.
 						this is because the page is looking for files by requesting for them.<br>
 						but because of an security reason you cant read from the drive,<br>
-						for saftey reasons. you can only do this with electron, or localhosts.
+						for saftey reasons. you can only do this with electron, or localhosts.<br>
+						Please Enable Easy Mode If You Dont Want To Do All Of This.
 						</p>
 					</div>
 				</center>

@@ -85,7 +85,7 @@ function compile(opts) {
 			#canvas{
 				width:100%;
 				height:100%;
-				position:absolute;
+				position:fixed;
 				top:0;
 				left:0;
 				image-rendering:pixelated; /*Make it look pixel sharp*/
@@ -131,7 +131,7 @@ function compile(opts) {
 				cursor:pointer;
 			}
 			#monitors {
-			  position: absolute;
+			  position: fixed;
 			  top: 0;
 			  left: 0;
 			  width:100%;
@@ -255,7 +255,47 @@ position: absolute; top: 50%; left: 50%; margin-left: -463.333px; margin-top: -3
 			  width: 100%;
 			  transform: translateZ(0);
 			}
+			.ui-button {
+				border:none;
+				width: 2rem;
+				height: 2rem;
+				padding: 0.375rem;
+				border-radius: 0.25rem;
+				user-select: none;
+				user-drag: none;
+				cursor: pointer;
+				background-color:white;
+			}
+			.ui-button:hover {
+				background-color:#d8dee9;
+			}
+			.ui-bar {
+				opacity:0.5;
+				background:white;
+				position:fixed;
+				top:0;
+				left:0;
+				width:100vw;
+				height:2rem;
+				z-index:1000000000;
+			}
 		</style>
+		<div class="ui-bar" id="UiBar" hidden>
+			<button class="ui-button" onclick="vm.greenFlag();">
+				<img
+					src="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNi42MyAxNy41Ij48ZGVmcz48c3R5bGU+LmNscy0xLC5jbHMtMntmaWxsOiM0Y2JmNTY7c3Ryb2tlOiM0NTk5M2Q7c3Ryb2tlLWxpbmVjYXA6cm91bmQ7c3Ryb2tlLWxpbmVqb2luOnJvdW5kO30uY2xzLTJ7c3Ryb2tlLXdpZHRoOjEuNXB4O308L3N0eWxlPjwvZGVmcz48dGl0bGU+aWNvbi0tZ3JlZW4tZmxhZzwvdGl0bGU+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNLjc1LDJBNi40NCw2LjQ0LDAsMCwxLDguNDQsMmgwYTYuNDQsNi40NCwwLDAsMCw3LjY5LDBWMTIuNGE2LjQ0LDYuNDQsMCwwLDEtNy42OSwwaDBhNi40NCw2LjQ0LDAsMCwwLTcuNjksMCIvPjxsaW5lIGNsYXNzPSJjbHMtMiIgeDE9IjAuNzUiIHkxPSIxNi43NSIgeDI9IjAuNzUiIHkyPSIwLjc1Ii8+PC9zdmc+"
+					width=16
+					height=16
+				>
+			</button>
+			<button class="ui-button" onclick="vm.stopAll();">
+				<img
+					src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjEuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAxNCAxNCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMTQgMTQ7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPHN0eWxlIHR5cGU9InRleHQvY3NzIj4KCS5zdDB7ZmlsbDojRUM1OTU5O3N0cm9rZTojQjg0ODQ4O3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2UtbWl0ZXJsaW1pdDoxMDt9Cjwvc3R5bGU+Cjxwb2x5Z29uIGNsYXNzPSJzdDAiIHBvaW50cz0iNC4zLDAuNSA5LjcsMC41IDEzLjUsNC4zIDEzLjUsOS43IDkuNywxMy41IDQuMywxMy41IDAuNSw5LjcgMC41LDQuMyAiLz4KPC9zdmc+Cg=="
+					width=16
+					height=16
+				>
+			</button>
+		</div>
 		<canvas id="canvas"></canvas>
 		<div id="monitors"></div>
 		<div class="questionBoxFull" id="questionBox" hidden>
@@ -309,7 +349,9 @@ position: absolute; top: 50%; left: 50%; margin-left: -463.333px; margin-top: -3
 		" hidden id="errrorText">Error!<br>Make sure this has access to the .sb3 file and make sure its on a website, or electron app.</h1></center>
 		<script src="vm.js?n=1"></script>
 		<script onerror="window.alert('OOPS were sorry but an error has been thrown, please check the devloper console for more info.')">
+			document.getElementById("UiBar").hidden = true;
 			window.vm = new Scratch.vm();
+			
 			window.file = document.getElementById("files");
 			const storage = new Scratch.storage();
 			let cvs = document.getElementById("canvas");
@@ -704,6 +746,7 @@ position: absolute; top: 50%; left: 50%; margin-left: -463.333px; margin-top: -3
 					cvs.hidden = false;
 					document.getElementById("projectstarticon").onclick = function () {
 						vm.greenFlag();
+						document.getElementById("UiBar").hidden = `+opts.ui+`;
 						document.getElementById("projectstarticon").hidden = true;
 					}
 				} else {
@@ -750,7 +793,8 @@ function startCompile() {
 			servername:document.getElementById("servername").value.replaceAll('"',"_"),
 			easymode:document.getElementById("easymode").checked,
 			loadingScreenText:"Loading Assets...".replaceAll('"',"_"),
-			addNumbersToUsername:document.getElementById("addNumbersToUsername").checked
+			addNumbersToUsername:document.getElementById("addNumbersToUsername").checked,
+			ui:document.getElementById("ui").checked
 		});
 	} else {
 		cons.innerHTML = "";
