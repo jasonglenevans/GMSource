@@ -358,25 +358,34 @@ position: absolute; top: 50%; left: 50%; margin-left: -463.333px; margin-top: -3
 				//vm is scratch-vm
 				vm.postIOData('keyboard',{key:keyid,isDown:isdown});
 			}
-			let shiftkey = false;
-			document.onkeydown = function (e) {
+			let shiftkey = false
+			cvs = document.getElementById("canvas"); //we will be using it soon
+			//in older versions of my compiler, i did the check directley on the document,
+			//but with no way of disabling the down key when you pressed it, so now its disabled
+			//when your typing in an ask and wait dialog.
+			var keyDownEnabled = true;
+			cvs.onkeydown = function (e) {
 				if (e.key == "Shift") {
 					shiftkey = true;
 				}
-				resiterKey(e.key,true);
+				if (keyDownEnabled) {
+					resiterKey(e.key,true);
+				}
 			}
-			document.onkeyup = function (e) {
+			cvs.onkeyup = function (e) {
 				if (e.key == "Shift") {
 					shiftkey = false;
 				}
 				resiterKey(e.key,false);
 			}
 			//mouse controls
-			cvs = document.getElementById("canvas"); //we will be using it soon
-			window.onmousedown = function(e) {
-				mousedata.down=true;
+			//same thing with the comments above for the keydown event.
+			cvs.onmousedown = function(e) {
+				if (keyDownEnabled) {
+					mousedata.down=true;
+				}
 			}
-			window.onmouseup = function(e) {
+			cvs.onmouseup = function(e) {
 				mousedata.down=false;
 			}
 			window.mousedata = {x:0,y:0,down:false};
@@ -403,20 +412,25 @@ position: absolute; top: 50%; left: 50%; margin-left: -463.333px; margin-top: -3
 			//what to do when the program extucutes a ask and wait block
 			let questionBox = document.getElementById("questionBox");
 			vm.runtime.addListener('QUESTION', questionData => {
-				if (!(questionData === null)) {
-					questionBox.hidden = false;
-					questionBox.children[0].value = ""; //make the box empty
-					questionBox.children[0].focus(); //make it focused
-				} else {
-					//returns null when something else cancels it.
-					questionBox.hidden = true;
-				}
+				setTimeout(() => {
+					//do a 5 ms delay because the new ask and wait block after the last one can interupt the new one and close it.
+					if (!(questionData === null)) {
+						questionBox.hidden = false;
+						questionBox.children[0].value = ""; //make the box empty
+						questionBox.children[0].focus(); //make it focused
+					} else {
+						//returns null when something else cancels it.
+						questionBox.hidden = true;
+						keyDownEnabled = false; //disable the keys, we are typing!
+					}
+				},5);
 			})
 			function hidebox() {
 				//hide the box because we do not need it anymore.
 				questionBox.hidden = true;
 				//send the info to the vm.
 				vm.runtime.emit('ANSWER', questionBox.children[0].value);
+				keyDownEnabled = true; //we are done typing! enable the keys!
 			}
 			questionBox.children[1].onclick = hidebox;
 			questionBox.children[0].onkeydown = function (e) {

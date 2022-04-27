@@ -358,25 +358,29 @@ position: absolute; top: 50%; left: 50%; margin-left: -463.333px; margin-top: -3
 				//vm is scratch-vm
 				vm.postIOData('keyboard',{key:keyid,isDown:isdown});
 			}
-			let shiftkey = false;
-			document.onkeydown = function (e) {
+			let shiftkey = false
+			cvs = document.getElementById("canvas"); //we will be using it soon
+			//in older versions of my compiler, i did the check directley on the document,
+			//but i found out that doing it on the canvas was better, so keys dont get resitered
+			//when your typing in an ask and wait dialog.
+			cvs.onkeydown = function (e) {
 				if (e.key == "Shift") {
 					shiftkey = true;
 				}
 				resiterKey(e.key,true);
 			}
-			document.onkeyup = function (e) {
+			cvs.onkeyup = function (e) {
 				if (e.key == "Shift") {
 					shiftkey = false;
 				}
 				resiterKey(e.key,false);
 			}
 			//mouse controls
-			cvs = document.getElementById("canvas"); //we will be using it soon
-			window.onmousedown = function(e) {
+			//same thing with the comments above for the keydown event.
+			cvs.onmousedown = function(e) {
 				mousedata.down=true;
 			}
-			window.onmouseup = function(e) {
+			cvs.onmouseup = function(e) {
 				mousedata.down=false;
 			}
 			window.mousedata = {x:0,y:0,down:false};
@@ -707,7 +711,7 @@ position: absolute; top: 50%; left: 50%; margin-left: -463.333px; margin-top: -3
 	log("Ziping Html...");
 	zip.file("index.html", html);
 	log("2HTML Complete!!!");
-	log("Please Wait Zip File Will Download Soon...");
+	log("Downloading...");
 	zip.generateAsync({type:"blob"})
 	.then(function(content) {
 		var a = document.createElement("a");
