@@ -406,7 +406,7 @@ position: absolute; top: 50%; left: 50%; margin-left: -463.333px; margin-top: -3
 				return ;
 			}
 			setTimeout(sendMouse,1);
-			document.body.onmousemove = function (e) {
+			document.onmousemove = function (e) {
 				mousedata={x:e.x,y:e.y};
 			}
 			//what to do when the program extucutes a ask and wait block
@@ -418,10 +418,11 @@ position: absolute; top: 50%; left: 50%; margin-left: -463.333px; margin-top: -3
 						questionBox.hidden = false;
 						questionBox.children[0].value = ""; //make the box empty
 						questionBox.children[0].focus(); //make it focused
+						keyDownEnabled = false; //disable the keys, we are typing!
 					} else {
+						
 						//returns null when something else cancels it.
 						questionBox.hidden = true;
-						keyDownEnabled = false; //disable the keys, we are typing!
 					}
 				},5);
 			})
@@ -696,7 +697,7 @@ position: absolute; top: 50%; left: 50%; margin-left: -463.333px; margin-top: -3
 		//back to project.
 		vm.runtime.emitProjectLoaded = function () {
 				//will run whenever the project finishes loading.
-				var flagscript = false;
+				var flagscript = `+opts.clicktostart+`;
 				if (flagscript) {
 					document.getElementById("projectstarticon").hidden = false;
 					document.getElementById("loadingText").hidden = true;
@@ -712,6 +713,7 @@ position: absolute; top: 50%; left: 50%; margin-left: -463.333px; margin-top: -3
 					document.getElementById("loadingText").hidden = true;
 				}
 				vm.setCloudProvider(gvbvdxxCloudProvider); //set my cloud provider to it.
+				keyDownEnabled = true; //enable the keys, cause we are starting the project, and we need to make sure the keys can be resitered
 		};
 		
 		</script>
