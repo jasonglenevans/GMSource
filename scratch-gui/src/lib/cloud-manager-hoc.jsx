@@ -132,10 +132,10 @@ const cloudManagerHOC = function (WrappedComponent) {
     };
 
     CloudManager.defaultProps = {
-        cloudHost: "",
-        hasCloudPermission: false,
+        cloudHost: null,
+        hasCloudPermission: true,
         onShowCloudInfo: () => {},
-        username: "user"+Math.round(Math.random()*1000000)
+        username: null
     };
 
     const mapStateToProps = (state, ownProps) => {
@@ -144,7 +144,7 @@ const cloudManagerHOC = function (WrappedComponent) {
             isShowingWithId: getIsShowingWithId(loadingState),
             projectId: state.scratchGui.projectState.projectId,
             // if you're editing someone else's project, you can't modify cloud data
-            canModifyCloudData: (!state.scratchGui.mode.hasEverEnteredEditor || ownProps.canSave)
+            canModifyCloudData: true
         };
     };
 

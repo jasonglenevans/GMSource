@@ -29,7 +29,6 @@ const cloudManagerHOC = function (WrappedComponent) {
             ]);
 
             this.props.vm.on('HAS_CLOUD_DATA_UPDATE', this.handleCloudDataUpdate);
-			this.props.vm.postIOData('userData', { username: "player"+Math.round(Math.random()*100000) });
         }
         componentDidMount () {
             if (this.shouldConnect(this.props)) {
@@ -133,10 +132,10 @@ const cloudManagerHOC = function (WrappedComponent) {
     };
 
     CloudManager.defaultProps = {
-        cloudHost: "",
-        hasCloudPermission: false,
+        cloudHost: null,
+        hasCloudPermission: true,
         onShowCloudInfo: () => {},
-        username: "user"+Math.round(Math.random()*1000000)
+        username: null
     };
 
     const mapStateToProps = (state, ownProps) => {

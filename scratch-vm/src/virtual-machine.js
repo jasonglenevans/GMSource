@@ -184,6 +184,11 @@ class VirtualMachine extends EventEmitter {
      */
     greenFlag () {
         this.runtime.greenFlag();
+		if (this.runtime.ongreenflagclick) {
+			try {
+				this.runtime.ongreenflagclick();
+			}catch(e){log.error("event error (green flag clicked event)");log.error(e);}
+		}
     }
 
     /**

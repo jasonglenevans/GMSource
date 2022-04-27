@@ -69,6 +69,24 @@ import audioctxbig from './audio_context/big.png';
 
 
 export default [
+    /*{
+        name: 'Extra',
+        extensionId: 'extra',
+        iconURL: audioctxbig,
+        insetIconURL: audioctxsmall,
+        description: (
+            <FormattedMessage
+                defaultMessage="Gvbvdxx Mod Helper App"
+                description=""
+                id="gui.extension.extra.description"
+            />
+        ),
+        featured: true,
+        disabled: false,
+        internetConnectionRequired: false,
+        bluetoothRequired: false,
+        helpLink: ''
+	},*/
     {
         name: 'Audio Context',
         extensionId: 'audioctx',

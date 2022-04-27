@@ -8,7 +8,10 @@ opt.onclick = function () {
 var addonsInjected = false;
 var vmset = false;
 var websocketID = "gvbvdxx-mod-html-cloud-data"; /*Change this to the glitch project name*/
-		var projectID = "project23518"; /*This will be your id for the project, so it does not overide with any cloud variables.*/
+const queryString = window.location.search;
+console.log(queryString);
+const urlParams = new URLSearchParams(queryString);
+		var projectID = urlParams.get("cloud"); /*This will be your id for the project, so it does not overide with any cloud variables.*/
 		/*Do not change ANYTHING below this script*/
 		window.websocketcloudprovider = null
 		function openconnection() {

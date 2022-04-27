@@ -175,7 +175,10 @@ class VirtualMachine extends EventEmitter {
         this.runtime.start();
 		console.warn("[gvbvdxx mod vm]: you are using start directley from the vm, its better if you call it from the runtime, you won't get this message.")
     }
-
+	
+	
+	
+	
     /**
      * "Green flag" handler - start all threads starting with a green flag.
      */
@@ -1102,6 +1105,7 @@ class VirtualMachine extends EventEmitter {
 
     // @deprecated
     attachV2SVGAdapter () {
+		console.warn("[gvbvdxx mod vm]: this function called 'attachV2SVGAdapter' is deprecated, please update to 'attachV2BitmapAdapter'")
     }
 
     /**

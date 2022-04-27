@@ -81,7 +81,9 @@ function tickRemove() {
 				username:"user"+Math.round(Math.random()*100000)
 			});
 			vmset = true;
-			latestScratchVM.setCloudProvider(gvbvdxxCloudProvider); //set my cloud provider to it.
+			latestScratchVM.runtime.ongreenflagclick = function () {
+				latestScratchVM.setCloudProvider(gvbvdxxCloudProvider); //set my cloud provider to it.
+			};
 		}
 	}catch(e){
 		vmset = false;

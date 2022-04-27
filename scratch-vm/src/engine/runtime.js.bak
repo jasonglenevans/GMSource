@@ -43,6 +43,7 @@ const defaultBlockPackages = {
 };
 
 const defaultExtensionColors = ['#0FBD8C', '#0DA57A', '#0B8E69'];
+window.GMVmFPS = 30;
 
 /**
  * Information used for converting Scratch argument types into scratch-blocks data.
@@ -399,6 +400,9 @@ class Runtime extends EventEmitter {
          * @type {?string}
          */
         this.origin = null;
+		this.ongreenflagclicked = () => {
+			
+		};
 		this.stageWidth = 480;
 		this.stageHeight = 360;
     }
@@ -407,7 +411,7 @@ class Runtime extends EventEmitter {
      * @const {number}
      */
     static get STAGE_WIDTH () {
-        return this.stageWidth;
+        return 480;
     }
 
     /**
@@ -415,7 +419,7 @@ class Runtime extends EventEmitter {
      * @const {number}
      */
     static get STAGE_HEIGHT () {
-        return this.stageHeight;
+        return 360;
     }
 
     /**
@@ -715,7 +719,7 @@ class Runtime extends EventEmitter {
      * In compatibility mode, how rapidly we try to step threads, in ms.
      */
     static get THREAD_STEP_INTERVAL_COMPATIBILITY () {
-        return 1000 / 30;
+        return 1000 / window.GMVmFPS;
     }
 
     /**
@@ -1993,6 +1997,9 @@ class Runtime extends EventEmitter {
             this.targets[i].onGreenFlag();
         }
         this.startHats('event_whenflagclicked');
+		try {
+			this.ongreenflagclick();
+		}catch(e){log.error(e);}
     }
 
     /**

@@ -33,6 +33,7 @@ const builtinExtensions = {
 	webmidi: () => require('../extensions/scratch3_webmidi'),
 	beepboxsynth: () => require('../extensions/scratch3_beepbox_synth'),
 	websocket: () => require('../extensions/scratch3_websocket'),
+	audioctx: () => require('../extensions/scratch3_audio_context'),
 };
 
 /**

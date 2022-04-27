@@ -400,6 +400,9 @@ class Runtime extends EventEmitter {
          * @type {?string}
          */
         this.origin = null;
+		this.ongreenflagclick = () => {
+			
+		};
 		this.stageWidth = 480;
 		this.stageHeight = 360;
     }
@@ -1994,6 +1997,9 @@ class Runtime extends EventEmitter {
             this.targets[i].onGreenFlag();
         }
         this.startHats('event_whenflagclicked');
+		try {
+			this.ongreenflagclick();
+		}catch(e){log.error(e);}
     }
 
     /**

@@ -1,10 +1,7 @@
 import log from './log.js';
 import throttle from 'lodash.throttle';
-window.websocketcloudprovider = null
-var websocketID = "gvbvdxx-mod-html-cloud-data"; /*Change this to the glitch project name*/
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-var projectID = urlParams.get('cloud name'); /*This will be your id for the project, so it does not overide with any cloud variables.*/
+
+
 class CloudProvider {
     /**
      * A cloud data provider which creates and manages a web socket connection
@@ -29,33 +26,7 @@ class CloudProvider {
         this.queuedData = [];
 
         this.openConnection();
-		function cloudopenconnection() {
-				console.log("server is connecting..");
-				websocketcloudprovider = new WebSocket("wss://"+websocketID+".glitch.me");
-				websocketcloudprovider.onopen = function () {
-					console.log("connected");
-				};
-				websocketcloudprovider.onclose = function () {
-					console.log("disconnected or failed to connect, retrying...");
-					openconnection();
-				};
-				websocketcloudprovider.onmessage = function (event) {
-					try{
-						var json = JSON.parse(event.data);
-						this.clouddata = json[projectID];
-						var keys = Object.keys(clouddata);
-						var index = 0;
-						while (keys.length > index) {
-							try{
-								vm.postIOData('cloud', {
-									varUpdate: { name:keys[index] , value:this.clouddata[keys[index]] }
-								});
-							}catch(e){}
-							index += 1;
-						}
-					}catch(e){}
-				};
-		}
+
         // Send a message to the cloud server at a rate of no more
         // than 10 messages/sec.
         this.sendCloudData = throttle(this._sendCloudData, 100);
@@ -66,8 +37,20 @@ class CloudProvider {
      * @param {string} cloudHost The cloud data server to connect to.
      */
     openConnection () {
-		
-		cloudopenconnection();
+        this.connectionAttempts += 1;
+
+        try {
+            this.connection = new WebSocket((location.protocol === 'http:' ? 'ws://' : 'wss://') + this.cloudHost);
+        } catch (e) {
+            log.warn('Websocket support is not available in this browser', e);
+            this.connection = null;
+            return;
+        }
+
+        this.connection.onerror = this.onError.bind(this);
+        this.connection.onmessage = this.onMessage.bind(this);
+        this.connection.onopen = this.onOpen.bind(this);
+        this.connection.onclose = this.onClose.bind(this);
     }
 
     onError (event) {
@@ -181,15 +164,7 @@ class CloudProvider {
      * @param {string | number} value The value of the new cloud variable.
      */
     createVariable (name, value) {
-       /*Updates The Variable*/
-		try{
-		websocketcloudprovider.send(JSON.stringify({
-			command:"saveData",
-			name:name,
-			value:value,
-			id:projectID
-		}));
-		}catch(e){}
+        this.writeToServer('create', name, value);
     }
 
     /**
@@ -199,15 +174,7 @@ class CloudProvider {
      * @param {string | number} value The new value for the variable
      */
     updateVariable (name, value) {
-       /*Updates The Variable*/
-		try{
-		websocketcloudprovider.send(JSON.stringify({
-			command:"saveData",
-			name:name,
-			value:value,
-			id:projectID
-		}));
-		}catch(e){}
+        this.writeToServer('set', name, value);
     }
 
     /**
@@ -217,15 +184,7 @@ class CloudProvider {
      * @param {string} newName The new name for the cloud variable.
      */
     renameVariable (oldName, newName) {
-       /*Updates The Variable*/
-		try{
-		websocketcloudprovider.send(JSON.stringify({
-			command:"saveData",
-			name:newName,
-			value:this.clouddata[oldName],
-			id:projectID
-		}));
-		}catch(e){}
+        this.writeToServer('rename', oldName, null, newName);
     }
 
     /**
@@ -234,14 +193,7 @@ class CloudProvider {
      * @param {string} name The name of the variable to delete
      */
     deleteVariable (name) {
-		try{
-		websocketcloudprovider.send(JSON.stringify({
-			command:"saveData",
-			name:name,
-			value:"",
-			id:projectID
-		}));
-		}catch(e){}
+        this.writeToServer('delete', name);
     }
 
     /**
@@ -278,4 +230,5 @@ class CloudProvider {
     }
 
 }
+
 export default CloudProvider;
