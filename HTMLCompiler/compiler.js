@@ -364,7 +364,7 @@ position: absolute; top: 50%; left: 50%; margin-left: -463.333px; margin-top: -3
 			//but with no way of disabling the down key when you pressed it, so now its disabled
 			//when your typing in an ask and wait dialog.
 			var keyDownEnabled = true;
-			cvs.onkeydown = function (e) {
+			document.onkeydown = function (e) {
 				if (e.key == "Shift") {
 					shiftkey = true;
 				}
@@ -372,7 +372,7 @@ position: absolute; top: 50%; left: 50%; margin-left: -463.333px; margin-top: -3
 					resiterKey(e.key,true);
 				}
 			}
-			cvs.onkeyup = function (e) {
+			document.onkeyup = function (e) {
 				if (e.key == "Shift") {
 					shiftkey = false;
 				}
@@ -380,12 +380,12 @@ position: absolute; top: 50%; left: 50%; margin-left: -463.333px; margin-top: -3
 			}
 			//mouse controls
 			//same thing with the comments above for the keydown event.
-			cvs.onmousedown = function(e) {
+			document.onmousedown = function(e) {
 				if (keyDownEnabled) {
 					mousedata.down=true;
 				}
 			}
-			cvs.onmouseup = function(e) {
+			document.onmouseup = function(e) {
 				mousedata.down=false;
 			}
 			window.mousedata = {x:0,y:0,down:false};
