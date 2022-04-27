@@ -746,7 +746,7 @@ position: absolute; top: 50%; left: 50%; margin-left: -463.333px; margin-top: -3
 					cvs.hidden = false;
 					document.getElementById("projectstarticon").onclick = function () {
 						vm.greenFlag();
-						document.getElementById("UiBar").hidden = `+opts.ui+`;
+						document.getElementById("UiBar").hidden = (!(`+opts.ui+`));
 						document.getElementById("projectstarticon").hidden = true;
 					}
 				} else {

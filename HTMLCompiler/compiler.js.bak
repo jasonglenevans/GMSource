@@ -793,7 +793,8 @@ function startCompile() {
 			servername:document.getElementById("servername").value.replaceAll('"',"_"),
 			easymode:document.getElementById("easymode").checked,
 			loadingScreenText:"Loading Assets...".replaceAll('"',"_"),
-			addNumbersToUsername:document.getElementById("addNumbersToUsername").checked
+			addNumbersToUsername:document.getElementById("addNumbersToUsername").checked,
+			ui:document.getElementById("ui").checked
 		});
 	} else {
 		cons.innerHTML = "";
