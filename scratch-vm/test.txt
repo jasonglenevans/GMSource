@@ -4,3 +4,230 @@ $ npm run docs && webpack --progress --colors --bail
 > scratch-vm@0.2.0 docs
 > jsdoc -c .jsdoc.json
 
+Hash: e3d3c8f844fd3e1edbab90c997e4f3be978ca614dc43afdabdf58ffb3572
+Version: webpack 4.46.0
+Child
+    Hash: e3d3c8f844fd3e1edbab
+    Time: 117514ms
+    Built at: 03/05/2022 13:57:32
+                      Asset      Size          Chunks                   Chunk Names
+        extension-worker.js  53.5 KiB                  [emitted]        
+    extension-worker.js.map  43.5 KiB                  [emitted] [dev]  
+              scratch-vm.js   7.7 MiB      scratch-vm  [emitted]        scratch-vm
+          scratch-vm.js.map  7.62 MiB      scratch-vm  [emitted] [dev]  scratch-vm
+          scratch-vm.min.js   7.7 MiB  scratch-vm.min  [emitted]        scratch-vm.min
+      scratch-vm.min.js.map  7.62 MiB  scratch-vm.min  [emitted] [dev]  scratch-vm.min
+    Entrypoint scratch-vm = scratch-vm.js scratch-vm.js.map
+    Entrypoint scratch-vm.min = scratch-vm.min.js scratch-vm.min.js.map
+    [./node_modules/webpack/buildin/global.js] (webpack)/buildin/global.js 472 bytes {scratch-vm} {scratch-vm.min} [built]
+    [./src/dispatch/central-dispatch.js] 9.17 KiB {scratch-vm} {scratch-vm.min} [built]
+    [./src/engine/runtime.js] 101 KiB {scratch-vm} {scratch-vm.min} [built]
+    [./src/engine/variable.js] 2.63 KiB {scratch-vm} {scratch-vm.min} [built]
+    [./src/extension-support/extension-manager.js] 21.9 KiB {scratch-vm} {scratch-vm.min} [built]
+    [./src/import/load-costume.js] 16.7 KiB {scratch-vm} {scratch-vm.min} [built]
+    [./src/import/load-sound.js] 2.65 KiB {scratch-vm} {scratch-vm.min} [built]
+    [./src/index.js] 87 bytes {scratch-vm} {scratch-vm.min} [built]
+    [./src/index.js-exposed] 69 bytes {scratch-vm} {scratch-vm.min} [built]
+    [./src/serialization/sb2.js] 53.5 KiB {scratch-vm} {scratch-vm.min} [built]
+    [./src/serialization/sb3.js] 49.3 KiB {scratch-vm} {scratch-vm.min} [built]
+    [./src/serialization/serialize-assets.js] 2.52 KiB {scratch-vm} {scratch-vm.min} [built]
+    [./src/util/log.js] 84 bytes {scratch-vm} {scratch-vm.min} [built]
+    [./src/util/math-util.js] 5.02 KiB {scratch-vm} {scratch-vm.min} [built]
+    [./src/virtual-machine.js] 70.1 KiB {scratch-vm} {scratch-vm.min} [built]
+        + 429 hidden modules
+    Child worker:
+                          Asset      Size  Chunks                   Chunk Names
+            extension-worker.js  53.5 KiB    main  [emitted]        main
+        extension-worker.js.map  43.5 KiB    main  [emitted] [dev]  main
+        Entrypoint main = extension-worker.js extension-worker.js.map
+        [./node_modules/babel-loader/lib/index.js?!./src/extension-support/extension-worker.js] ./node_modules/babel-loader/lib??ref--4!./src/extension-support/extension-worker.js 4.29 KiB {main} [built]
+        [./node_modules/webpack/buildin/global.js] (webpack)/buildin/global.js 472 bytes {main} [built]
+        [./src/dispatch/shared-dispatch.js] 14.6 KiB {main} [built]
+        [./src/dispatch/worker-dispatch.js] 7.42 KiB {main} [built]
+        [./src/extension-support/argument-type.js] 686 bytes {main} [built]
+        [./src/extension-support/block-type.js] 1.02 KiB {main} [built]
+        [./src/extension-support/target-type.js] 308 bytes {main} [built]
+        [./src/util/log.js] 84 bytes {main} [built]
+            + 12 hidden modules
+Child
+    Hash: 90c997e4f3be978ca614
+    Time: 109784ms
+    Built at: 03/05/2022 13:57:24
+                      Asset      Size      Chunks                   Chunk Names
+        extension-worker.js  61.8 KiB              [emitted]        
+    extension-worker.js.map  49.5 KiB              [emitted] [dev]  
+              scratch-vm.js  5.86 MiB  scratch-vm  [emitted]        scratch-vm
+          scratch-vm.js.map  5.74 MiB  scratch-vm  [emitted] [dev]  scratch-vm
+    Entrypoint scratch-vm = scratch-vm.js scratch-vm.js.map
+    [./src/dispatch/central-dispatch.js] 9.17 KiB {scratch-vm} [built]
+    [./src/engine/runtime.js] 101 KiB {scratch-vm} [built]
+    [./src/engine/variable.js] 2.63 KiB {scratch-vm} [built]
+    [./src/extension-support/extension-manager.js] 21.9 KiB {scratch-vm} [built]
+    [./src/import/load-costume.js] 16.7 KiB {scratch-vm} [built]
+    [./src/import/load-sound.js] 2.65 KiB {scratch-vm} [built]
+    [./src/index.js] 84 bytes {scratch-vm} [built]
+    [./src/serialization/sb2.js] 53.5 KiB {scratch-vm} [built]
+    [./src/serialization/sb3.js] 49.3 KiB {scratch-vm} [built]
+    [./src/serialization/serialize-assets.js] 2.52 KiB {scratch-vm} [built]
+    [./src/util/log.js] 84 bytes {scratch-vm} [built]
+    [./src/util/math-util.js] 5.02 KiB {scratch-vm} [built]
+    [./src/util/new-block-ids.js] 1020 bytes {scratch-vm} [built]
+    [./src/util/string-util.js] 4.46 KiB {scratch-vm} [built]
+    [./src/virtual-machine.js] 70.1 KiB {scratch-vm} [built]
+        + 197 hidden modules
+    Child worker:
+                          Asset      Size  Chunks                   Chunk Names
+            extension-worker.js  61.8 KiB    main  [emitted]        main
+        extension-worker.js.map  49.5 KiB    main  [emitted] [dev]  main
+        Entrypoint main = extension-worker.js extension-worker.js.map
+        [./node_modules/babel-loader/lib/index.js?!./src/extension-support/extension-worker.js] ./node_modules/babel-loader/lib??ref--4!./src/extension-support/extension-worker.js 4.29 KiB {main} [built]
+        [./src/dispatch/shared-dispatch.js] 14.6 KiB {main} [built]
+        [./src/dispatch/worker-dispatch.js] 7.42 KiB {main} [built]
+        [./src/extension-support/argument-type.js] 686 bytes {main} [built]
+        [./src/extension-support/block-type.js] 1.02 KiB {main} [built]
+        [./src/extension-support/target-type.js] 308 bytes {main} [built]
+        [./src/util/log.js] 84 bytes {main} [built]
+        [stream] external "stream" 42 bytes {main} [built]
+        [util] external "util" 42 bytes {main} [built]
+            + 20 hidden modules
+Child
+    Hash: dc43afdabdf58ffb3572
+    Time: 121774ms
+    Built at: 03/05/2022 13:57:36
+                                                    Asset       Size                         Chunks                                Chunk Names
+                           3325b91e8645157f8dc6.worker.js    6.3 KiB                                 [emitted]                     
+                       3325b91e8645157f8dc6.worker.js.map   6.24 KiB                                 [emitted]                     
+                           829006d1e432e3295097.worker.js   6.16 KiB                                 [emitted] [immutable]         
+                       829006d1e432e3295097.worker.js.map   6.19 KiB                                 [emitted] [dev]               
+                                            benchmark.css   1.33 KiB                                 [emitted]                     
+                                             benchmark.js   8.47 MiB                      benchmark  [emitted]              [big]  benchmark
+                                         benchmark.js.map   8.47 MiB                      benchmark  [emitted] [dev]               benchmark
+                                      extension-worker.js   53.5 KiB                                 [emitted]                     
+                                  extension-worker.js.map   43.5 KiB                                 [emitted] [dev]               
+                                               index.html   3.66 KiB                                 [emitted]                     
+                                            media/1x1.gif   43 bytes                                 [emitted]                     
+                                          media/click.mp3   7.94 KiB                                 [emitted]                     
+                                          media/click.ogg   5.32 KiB                                 [emitted]                     
+                                          media/click.wav   3.12 KiB                                 [emitted]                     
+                             media/comment-arrow-down.svg  885 bytes                                 [emitted]                     
+                               media/comment-arrow-up.svg  977 bytes                                 [emitted]                     
+                                       media/delete-x.svg   1.26 KiB                                 [emitted]                     
+                                         media/delete.mp3   9.57 KiB                                 [emitted]                     
+                                         media/delete.ogg   8.42 KiB                                 [emitted]                     
+                                         media/delete.wav   11.7 KiB                                 [emitted]                     
+                            media/dropdown-arrow-dark.svg  573 bytes                                 [emitted]                     
+                                 media/dropdown-arrow.svg  569 bytes                                 [emitted]                     
+                 media/extensions/microbit-block-icon.svg    4.9 KiB                                 [emitted]                     
+                    media/extensions/music-block-icon.svg   4.38 KiB                                 [emitted]                     
+                      media/extensions/pen-block-icon.svg   2.47 KiB                                 [emitted]                     
+                    media/extensions/wedo2-block-icon.svg   9.57 KiB                                 [emitted]                     
+                                     media/eyedropper.svg   3.47 KiB                                 [emitted]                     
+                                     media/green-flag.svg   1.16 KiB                                 [emitted]                     
+                                     media/handclosed.cur  326 bytes                                 [emitted]                     
+                                     media/handdelete.cur  766 bytes                                 [emitted]                     
+                                       media/handopen.cur  198 bytes                                 [emitted]                     
+                                    media/icons/arrow.svg   1.18 KiB                                 [emitted]                     
+                             media/icons/arrow_button.svg   1.06 KiB                                 [emitted]                     
+                          media/icons/control_forever.svg   4.57 KiB                                 [emitted]                     
+                           media/icons/control_repeat.svg   1.95 KiB                                 [emitted]                     
+                             media/icons/control_stop.svg  301 bytes                                 [emitted]                     
+                             media/icons/control_wait.svg   1.11 KiB                                 [emitted]                     
+                     media/icons/event_broadcast_blue.svg   1.62 KiB                                 [emitted]                     
+                    media/icons/event_broadcast_coral.svg   1.62 KiB                                 [emitted]                     
+                    media/icons/event_broadcast_green.svg   1.62 KiB                                 [emitted]                     
+                  media/icons/event_broadcast_magenta.svg   1.62 KiB                                 [emitted]                     
+                   media/icons/event_broadcast_orange.svg   1.62 KiB                                 [emitted]                     
+                   media/icons/event_broadcast_purple.svg   1.61 KiB                                 [emitted]                     
+       media/icons/event_when-broadcast-received_blue.svg   1.61 KiB                                 [emitted]                     
+      media/icons/event_when-broadcast-received_coral.svg   1.62 KiB                                 [emitted]                     
+      media/icons/event_when-broadcast-received_green.svg   1.62 KiB                                 [emitted]                     
+    media/icons/event_when-broadcast-received_magenta.svg   1.62 KiB                                 [emitted]                     
+     media/icons/event_when-broadcast-received_orange.svg   1.62 KiB                                 [emitted]                     
+     media/icons/event_when-broadcast-received_purple.svg   1.61 KiB                                 [emitted]                     
+                    media/icons/event_whenflagclicked.svg  634 bytes                                 [emitted]                     
+                                   media/icons/remove.svg   1.55 KiB                                 [emitted]                     
+                             media/icons/set-led_blue.svg   1.99 KiB                                 [emitted]                     
+                            media/icons/set-led_coral.svg   1.99 KiB                                 [emitted]                     
+                            media/icons/set-led_green.svg   1.99 KiB                                 [emitted]                     
+                          media/icons/set-led_magenta.svg   1.99 KiB                                 [emitted]                     
+                          media/icons/set-led_mystery.svg   2.89 KiB                                 [emitted]                     
+                           media/icons/set-led_orange.svg   1.99 KiB                                 [emitted]                     
+                           media/icons/set-led_purple.svg   1.99 KiB                                 [emitted]                     
+                            media/icons/set-led_white.svg   1.99 KiB                                 [emitted]                     
+                           media/icons/set-led_yellow.svg   1.99 KiB                                 [emitted]                     
+                     media/icons/wedo_motor-clockwise.svg   3.66 KiB                                 [emitted]                     
+              media/icons/wedo_motor-counterclockwise.svg   3.64 KiB                                 [emitted]                     
+                    media/icons/wedo_motor-speed_fast.svg   4.23 KiB                                 [emitted]                     
+                     media/icons/wedo_motor-speed_med.svg   4.24 KiB                                 [emitted]                     
+                    media/icons/wedo_motor-speed_slow.svg   4.26 KiB                                 [emitted]                     
+                 media/icons/wedo_when-distance_close.svg   4.64 KiB                                 [emitted]                     
+                  media/icons/wedo_when-tilt-backward.svg    4.8 KiB                                 [emitted]                     
+                   media/icons/wedo_when-tilt-forward.svg   4.81 KiB                                 [emitted]                     
+                      media/icons/wedo_when-tilt-left.svg   3.57 KiB                                 [emitted]                     
+                     media/icons/wedo_when-tilt-right.svg   3.57 KiB                                 [emitted]                     
+                           media/icons/wedo_when-tilt.svg   4.01 KiB                                 [emitted]                     
+                                         media/repeat.svg   1.21 KiB                                 [emitted]                     
+                                    media/rotate-left.svg   1.04 KiB                                 [emitted]                     
+                                   media/rotate-right.svg   1.03 KiB                                 [emitted]                     
+                                        media/sprites.png   4.05 KiB                                 [emitted]                     
+                                        media/sprites.svg   1.73 KiB                                 [emitted]                     
+                               media/status-not-ready.svg   1.16 KiB                                 [emitted]                     
+                                   media/status-ready.svg   1.09 KiB                                 [emitted]                     
+                                        media/zoom-in.svg  634 bytes                                 [emitted]                     
+                                       media/zoom-out.svg  582 bytes                                 [emitted]                     
+                                     media/zoom-reset.svg  501 bytes                                 [emitted]                     
+                                        scratch-render.js   2.13 MiB                                 [emitted]              [big]  
+                                    scratch-render.js.map   2.22 MiB                                 [emitted]              [big]  
+                                    scratch-render.min.js   1.54 MiB                                 [emitted]              [big]  
+                                       scratch-storage.js    813 KiB                                 [emitted]              [big]  
+                                   scratch-storage.js.map    831 KiB                                 [emitted]              [big]  
+                                   scratch-storage.min.js    813 KiB                                 [emitted]              [big]  
+                               scratch-storage.min.js.map    831 KiB                                 [emitted]              [big]  
+                                  scratch-svg-renderer.js   1.36 MiB                                 [emitted]              [big]  
+                              scratch-svg-renderer.js.map  155 bytes                                 [emitted]                     
+                                                suite.css   1.04 KiB                                 [emitted]                     
+                                               suite.html  644 bytes                                 [emitted]                     
+                                                 suite.js   16.3 KiB                                 [emitted]                     
+                         video-sensing-extension-debug.js   42.1 KiB  video-sensing-extension-debug  [emitted]                     video-sensing-extension-debug
+                     video-sensing-extension-debug.js.map   45.2 KiB  video-sensing-extension-debug  [emitted] [dev]               video-sensing-extension-debug
+                                       video-sensing.html  519 bytes                                 [emitted]                     
+                                         video-sensing.js    5.1 KiB                                 [emitted]                     
+    Entrypoint benchmark [big] = benchmark.js benchmark.js.map
+    Entrypoint video-sensing-extension-debug = video-sensing-extension-debug.js video-sensing-extension-debug.js.map
+    [./node_modules/webpack/buildin/global.js] (webpack)/buildin/global.js 472 bytes {benchmark} {video-sensing-extension-debug} [built]
+    [./src/blocks/scratch3_control.js] 7.08 KiB {benchmark} [built]
+    [./src/blocks/scratch3_data.js] 9.98 KiB {benchmark} [built]
+    [./src/blocks/scratch3_event.js] 5.36 KiB {benchmark} [built]
+    [./src/blocks/scratch3_looks.js] 26 KiB {benchmark} [built]
+    [./src/blocks/scratch3_motion.js] 11.2 KiB {benchmark} [built]
+    [./src/blocks/scratch3_operators.js] 6.06 KiB {benchmark} [built]
+    [./src/blocks/scratch3_procedures.js] 5.16 KiB {benchmark} [built]
+    [./src/engine/runtime.js] 101 KiB {benchmark} [built]
+    [./src/extensions/scratch3_video_sensing/debug.js] 274 bytes {video-sensing-extension-debug} [built]
+    [./src/extensions/scratch3_video_sensing/debug.js-exposed] 80 bytes {video-sensing-extension-debug} [built]
+    [./src/import/load-costume.js] 16.7 KiB {benchmark} [built]
+    [./src/import/load-sound.js] 2.65 KiB {benchmark} [built]
+    [./src/index.js-exposed] 69 bytes {benchmark} [built]
+    [./src/playground/benchmark.js] 31 KiB {benchmark} [built]
+        + 512 hidden modules
+    Child worker:
+                                     Asset      Size  Chunks                         Chunk Names
+            829006d1e432e3295097.worker.js  6.16 KiB    main  [emitted] [immutable]  main
+        829006d1e432e3295097.worker.js.map  6.19 KiB    main  [emitted] [dev]        main
+        Entrypoint main = 829006d1e432e3295097.worker.js 829006d1e432e3295097.worker.js.map
+           1 module
+    Child worker:
+                          Asset      Size  Chunks                   Chunk Names
+            extension-worker.js  53.5 KiB    main  [emitted]        main
+        extension-worker.js.map  43.5 KiB    main  [emitted] [dev]  main
+        Entrypoint main = extension-worker.js extension-worker.js.map
+        [./node_modules/babel-loader/lib/index.js?!./src/extension-support/extension-worker.js] ./node_modules/babel-loader/lib??ref--4!./src/extension-support/extension-worker.js 4.29 KiB {main} [built]
+        [./node_modules/webpack/buildin/global.js] (webpack)/buildin/global.js 472 bytes {main} [built]
+        [./src/dispatch/shared-dispatch.js] 14.6 KiB {main} [built]
+        [./src/dispatch/worker-dispatch.js] 7.42 KiB {main} [built]
+        [./src/extension-support/argument-type.js] 686 bytes {main} [built]
+        [./src/extension-support/block-type.js] 1.02 KiB {main} [built]
+        [./src/extension-support/target-type.js] 308 bytes {main} [built]
+        [./src/util/log.js] 84 bytes {main} [built]
+            + 12 hidden modules
+Done in 164.03s.
