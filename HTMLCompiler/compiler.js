@@ -93,7 +93,7 @@ function compile(opts) {
 			#monitors {
 				width:100%;
 				height:100%;
-				position:absolute;
+				position:fixed;
 				top:0;
 				left:0;
 			}
@@ -754,6 +754,7 @@ position: absolute; top: 50%; left: 50%; margin-left: -463.333px; margin-top: -3
 					document.getElementById("projectstarticon").hidden = true;
 					cvs.hidden = false;
 					document.getElementById("loadingText").hidden = true;
+					document.getElementById("UiBar").hidden = (!(`+opts.ui+`));
 				}
 				vm.setCloudProvider(gvbvdxxCloudProvider); //set my cloud provider to it.
 				keyDownEnabled = true; //enable the keys, cause we are starting the project, and we need to make sure the keys can be resitered
