@@ -79,17 +79,17 @@ class websocket {
 						
                     }
                 },
-                /*{
+				{
                     opcode: 'connectServer',
                     blockType: BlockType.COMMAND,
                     text: 'Connect to server [ws]',
                     arguments: {
 						ws: {
 							type:ArgumentType.STRING,
-							defaultValue:"wss://gvbvdxx-mod-cloud-server.glitch.me"
+							defaultValue:"wss://something..."
 						}
                     }
-                },*/
+                },
                 {
                     opcode: 'changeHost',
                     blockType: BlockType.COMMAND,
@@ -156,8 +156,10 @@ class websocket {
     }
 	connectServer (args) {
 		try {
-			window.webSocketExtension.wsURI = Cast.toString(args.ws);
-			window.webSocketExtension.connectToServer();
+			if (window.confirm("[Gvbvdxx Mod (scratch 3.0 mod)]: The Program Running Is Trying To Connect To A Diffrent Server Allow It To Connect To This WebSocket Url?")) {
+				window.webSocketExtension.wsURI = Cast.toString(args.ws);
+				window.webSocketExtension.connectToServer();
+			}
 		}catch(e){
 		}
 	}

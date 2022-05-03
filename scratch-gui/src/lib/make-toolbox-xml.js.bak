@@ -425,7 +425,7 @@ const control = function (isInitialSetup, isStage) {
             <block type="control_delete_this_clone"/>
         `}
 		${blockSeparator}
-		<label text='Extra blocks:'></label>
+		<label text="Unseen blocks:"></label>
 		<block type="control_while"/>
 		<block type="control_for_each"/>
 		<block type="control_get_counter"/>
