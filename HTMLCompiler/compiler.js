@@ -411,6 +411,7 @@ position: absolute; top: 50%; left: 50%; margin-left: -463.333px; margin-top: -3
 				vm.loadProject(blob);
 				document.getElementById("loadingText").hidden = false;
 				cvs.hidden = true;
+				document.getElementById("loading").hidden = true;
 			  }
 			};
 
