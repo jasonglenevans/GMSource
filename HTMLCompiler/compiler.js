@@ -465,6 +465,7 @@ position: absolute; top: 50%; left: 50%; margin-left: -463.333px; margin-top: -3
 						
 						//returns null when something else cancels it.
 						questionBox.hidden = true;
+						keyDownEnabled = true;
 					}
 				},5);
 			})
