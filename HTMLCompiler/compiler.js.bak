@@ -279,6 +279,23 @@ position: absolute; top: 50%; left: 50%; margin-left: -463.333px; margin-top: -3
 				height:2rem;
 				z-index:1000000000;
 			}
+/* The animation code */
+@keyframes example {
+  0%   {transform: rotate(0deg);}
+  100%  {transform: rotate(360deg);}
+}
+
+/* The element to apply the animation to */
+.loading {
+  width: 100px;
+  height: 100px;
+  animation: rotation 8s infinite linear;
+  animation-name: example;
+  animation-duration: 0.5s;
+  animation-delay: 0s;
+  animation-iteration-count: infinite;
+  margin-left:-3px;
+}
 		</style>
 		<div class="ui-bar" id="UiBar" hidden>
 			<button class="ui-button" onclick="vm.greenFlag();">
@@ -296,8 +313,10 @@ position: absolute; top: 50%; left: 50%; margin-left: -463.333px; margin-top: -3
 				>
 			</button>
 		</div>
-		<canvas id="canvas"></canvas>
+		<canvas id="canvas" hidden></canvas>
+		
 		<div id="monitors"></div>
+		<img id="loading" class="loading" selectable=false draggable=false src="data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSI4NyIgaGVpZ2h0PSI4NyIgdmlld0JveD0iMCwwLDg3LDg3Ij48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTk2LjUsLTEzNi41KSI+PGcgZGF0YS1wYXBlci1kYXRhPSJ7JnF1b3Q7aXNQYWludGluZ0xheWVyJnF1b3Q7OnRydWV9IiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9Im5vbnplcm8iIHN0cm9rZS13aWR0aD0iMTAiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1kYXNoYXJyYXk9IiIgc3Ryb2tlLWRhc2hvZmZzZXQ9IjAiIHN0eWxlPSJtaXgtYmxlbmQtbW9kZTogbm9ybWFsIj48cGF0aCBkPSJNMjAxLjUsMTgwYzAsLTIxLjI2Mjk2IDE3LjIzNzA0LC0zOC41IDM4LjUsLTM4LjVjMjEuMjYyOTYsMCAzOC41LDE3LjIzNzA0IDM4LjUsMzguNWMwLDIxLjI2Mjk2IC0xNy4yMzcwNCwzOC41IC0zOC41LDM4LjVjLTIxLjI2Mjk2LDAgLTM4LjUsLTE3LjIzNzA0IC0zOC41LC0zOC41eiIgc3Ryb2tlPSIjZmZmZmZmIi8+PHBhdGggZD0iTTIwNi40MjE0NiwxOTguNDQxOTdjLTMuMTM3NzgsLTUuNDE1MzggLTQuOTIxNDYsLTExLjYyOTE3IC00LjkyMTQ2LC0xOC4yMzYwNmMwLC0xMC4wNzQ3NSA0LjE0NzU2LC0xOS4yMzU0NyAxMC45MTk0NywtMjYuMDQ0OTIiIHN0cm9rZT0iI2E3YTdhNyIvPjwvZz48L2c+PC9zdmc+">
 		<div class="questionBoxFull" id="questionBox" hidden>
 		<input type="text" placeholder="type something here..." id="inputOfQuestion">
 		<img src="data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIyMS4yIiBoZWlnaHQ9IjIxLjIiIHZpZXdCb3g9IjAsMCwyMS4yLDIxLjIiPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0yMjkuNCwtMTY5LjQpIj48ZyBkYXRhLXBhcGVyLWRhdGE9InsmcXVvdDtpc1BhaW50aW5nTGF5ZXImcXVvdDs6dHJ1ZX0iIGZpbGwtcnVsZT0ibm9uemVybyIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1kYXNoYXJyYXk9IiIgc3Ryb2tlLWRhc2hvZmZzZXQ9IjAiIHN0eWxlPSJtaXgtYmxlbmQtbW9kZTogbm9ybWFsIj48cGF0aCBkPSJNMjI5LjksMTgwYzAsLTUuNTc4MDggNC41MjE5MiwtMTAuMSAxMC4xLC0xMC4xYzUuNTc4MDgsMCAxMC4xLDQuNTIxOTIgMTAuMSwxMC4xYzAsNS41NzgwOCAtNC41MjE5MiwxMC4xIC0xMC4xLDEwLjFjLTUuNTc4MDgsMCAtMTAuMSwtNC41MjE5MiAtMTAuMSwtMTAuMXoiIGZpbGw9IiMwMDdkZmYiIHN0cm9rZT0iIzAwNjJiZCIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiLz48cGF0aCBkPSJNMjM0Ljg5NTExLDE3OS45ODE3bDMuOTA5NTgsNC42MTA4N2w2LjMwMDIsLTkuMTg1MTQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PC9nPjwvZz48L3N2Zz4=" id="checkmark">
@@ -465,6 +484,7 @@ position: absolute; top: 50%; left: 50%; margin-left: -463.333px; margin-top: -3
 						
 						//returns null when something else cancels it.
 						questionBox.hidden = true;
+						keyDownEnabled = true;
 					}
 				},5);
 			})
